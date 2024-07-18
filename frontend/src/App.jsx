@@ -3,12 +3,15 @@ import './App.css'
 import "flowbite"
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Login from './components/auth/Login'
 
 import { Toaster } from 'react-hot-toast'
 
+// componentler
 import Home from './components/Home'
 import Header from './components/layouts/Header'
+
+import Login from './components/auth/Login'
+import Register from './components/auth/Register'
 
 function App() {
 
@@ -20,8 +23,11 @@ function App() {
    <Header />
    <Routes>
 
+   <Route path='/register' element={<Register />} />
+
     <Route path='/' element={<Home />} />
     <Route path='/login' element={<Login />} />
+   
    </Routes>
    </BrowserRouter>
   
