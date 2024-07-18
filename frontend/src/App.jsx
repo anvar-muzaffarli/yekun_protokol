@@ -8,6 +8,7 @@ import Login from './components/auth/Login'
 import { Toaster } from 'react-hot-toast'
 
 import Home from './components/Home'
+import Header from './components/layouts/Header'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
    <BrowserRouter>
 
    <Toaster />
+   <Header />
    <Routes>
 
     <Route path='/' element={<Home />} />
