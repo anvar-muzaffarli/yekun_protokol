@@ -11,6 +11,18 @@ dotenv.config({path:'config/config.env'})
 
 connectDatabase()
 
+
+
+//  deploy ucun kodlar start
+import path from "path"
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+
+
+
+// deploy ucun kodlar end
+
 // console.log(hello)
 
 //Handle uncaught exceptions
@@ -27,12 +39,27 @@ app.use(cookieParser())
 // Bura marshrutlar gelecek
 import productRoutes from "./routes/products.js"
 import authRoutes from "./routes/users.js"
+import { fileURLToPath } from "url"
 
 //express de arakatman proqramdi (middleware)
 app.use('/api/v1', productRoutes)
 app.use('/api/v1', authRoutes)
 
 app.use(errors)
+
+
+
+// DEPLOY UCUN KODLAR ARDI
+
+if(process.env.NODE_ENV === "PRODUCTION") {
+    app.use(express.static(path.join(__dirname, "../frontend/dist")))
+
+    app.get("*", (req,res)=> {
+        res.sendFile(path.resolve(__dirname, "../frontend/dist/index.html"))
+    } )
+}
+
+
 
 
 

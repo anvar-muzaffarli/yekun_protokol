@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLogoutMutation } from '../../redux/api/authApi';
-import { clearUser, setUser } from '../../redux/features/userSlice';
+import { clearUser } from '../../redux/features/userSlice';
 import toast from 'react-hot-toast';
 import { useGetMeQuery } from '../../redux/api/userApi';
 
@@ -11,7 +11,7 @@ const Header = () => {
   const dispatch = useDispatch();
 
   // Fetch user data on initial render or login state change
-  const { data, refetch } = useGetMeQuery();
+  const {  refetch } = useGetMeQuery();
   const { user, isAuthenticated } = useSelector((state) => state.auth);
   const [logout] = useLogoutMutation();
 
@@ -103,11 +103,13 @@ const Header = () => {
                   className={`${dropdownOpen ? "block" : "hidden"} absolute z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600`}
                 >
                   <ul className="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
-                    <li>
-                      <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                        Dashboard
-                      </a>
-                    </li>
+                    {user?.role === 'admin' && (
+                      <li>
+                        <Link to="/admin/dashboard" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                          Dashboard
+                        </Link>
+                      </li>
+                    )}
                     <li>
                       <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                         Settings
