@@ -8,17 +8,24 @@ import Register from "../auth/Register";
 import ForgotPassword from "../auth/ForgotPassword";
 import ResetPassword from "../auth/ResetPassword";
 
+import PrivateRoute from "../auth/PrivateRoute"; 
+
+
 import Home from "../Home";
 
 const userRoutes = () => {
   return (
     <>
-      <Route path="/" element={<Home />} />
+
+       <Route element={<PrivateRoute />}>
+        <Route path="/" element={<Home />} />
+        
+      </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      {/* <Route path="/password/forgot" element={<ForgotPassword />} />
-      <Route path="/password/reset/:token" element={<ResetPassword />} /> */}
+       <Route path="/password/forgot" element={<ForgotPassword />} />
+      <Route path="/password/reset/:token" element={<ResetPassword />} />
 
 
     </>

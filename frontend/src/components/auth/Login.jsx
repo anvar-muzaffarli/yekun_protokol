@@ -17,10 +17,10 @@ const Login = () => {
         if (isAuthenticated) {
             navigate('/');
         }
-        if (error) {
-            toast.error(error?.data?.message || 'Login failed');
-        }
-    }, [error, isAuthenticated, navigate]);
+        // if (error) {
+        //     toast.error(error?.data?.message || 'Login failed');
+        // }
+    }, [ isAuthenticated, navigate]);
 
     const loginHandler = async (e) => {
         e.preventDefault();

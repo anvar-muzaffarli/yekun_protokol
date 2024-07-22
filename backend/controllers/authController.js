@@ -11,21 +11,14 @@ import { sendEmail } from "../utils/sendEmail.js"
 
 // module vs commonjs
 export const register = catchAsyncErrors(async(req,res,next)=> {
-    // const name = req.body.name
-    // const email = req.body.email
-    // const password = req.body.password
+  
     const {name, email, password} = req.body
 
-    //<input type="text" name="name"
 
     const user = await User.create({
-        // name:name, email:email, password:password
         name, email, password 
     })
-//Evveller bele idi (18-20)
-    // res.status(201).json({
-    //     user
-    // })
+
 sendToken(user, 201,res)
 
 
